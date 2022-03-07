@@ -23,9 +23,9 @@ namespace BaseService
             _config.SpeechRecognitionLanguage = language;
         }
 
-        public async Task<string> Start(TaskCompletionSource<int> source, Action<string> callback , bool isUseMic)
+        public async Task<string> Start(TaskCompletionSource<int> source, Action<string> callback, bool isUseMic)
         {
-            if(isUseMic)
+            if (isUseMic)
             {
                 using (var audioConfig = AudioConfig.FromDefaultMicrophoneInput())
                 {
@@ -101,7 +101,8 @@ namespace BaseService
         /// </summary>
         private void RecognizedEventHandler(SpeechRecognitionEventArgs e, Action<string> callback)
         {
-            callback(e.Result.Text.ProcessingContent());
+            callback(e.Result.Text);
+            //callback(e.Result.Text.ProcessingContent());
 
             // if access to the JSON is needed it can be obtained from Properties
             string json = e.Result.Properties.GetProperty(PropertyId.SpeechServiceResponse_JsonResult);

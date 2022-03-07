@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BaseService;
+using DesktopWPFAppLowLevelKeyboardHook;
 using Microsoft.Win32;
 
 namespace ui
@@ -27,9 +28,10 @@ namespace ui
         private SpeechService _speechService;
         private TaskCompletionSource<int> _stopTaskCompletionSource;
         private string wavFileName;
-
+        private LowLevelKeyboardListener _listener;
         public MainWindow()
         {
+
             InitializeComponent();
             BtnFile.IsEnabled = false;
             FromMic.IsChecked = true;
@@ -49,6 +51,11 @@ namespace ui
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartEvent();
+        }
+
+        void StartEvent()
         {
             if ((bool)FromFile.IsChecked)
             {
@@ -70,9 +77,15 @@ namespace ui
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
+
         }
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
+        {
+            StopEvent();  
+        }
+
+        void StopEvent()
         {
             _stopTaskCompletionSource.TrySetResult(0);
             StartButton.IsEnabled = true;
@@ -149,6 +162,29 @@ namespace ui
         {
             BtnFile.IsEnabled = false;
             fileNameTextBox.IsEnabled = false;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _listener = new LowLevelKeyboardListener();
+            _listener.OnKeyPressed += _listener_OnKeyPressed;
+
+            _listener.HookKeyboard();
+        }
+        void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
+        {
+            if (e.KeyPressed.ToString() == "F1")
+                StartEvent();
+             if (e.KeyPressed.ToString() == "F2")
+                StopEvent();
+            if (e.KeyPressed.ToString() == "F3")
+                DisplayText.Text = "";
+        }
+
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _listener.UnHookKeyboard();
         }
     }
 }
