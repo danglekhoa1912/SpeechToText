@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ui"
         mc:Ignorable="d"
-        Title="khoaSpeechtoText" Height="450" Width="800">
-    <Grid Background="#FFF0C1C1">
-        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Height="24" Margin="372,381,0,0" VerticalAlignment="Top" Width="29" Click="StartButton_Click"/>
-        <Button x:Name="StopButton" Content="Stop" IsEnabled="False" HorizontalAlignment="Left" Height="24" Margin="414,381,0,0" VerticalAlignment="Top" Width="29" Click="StopButton_OnClickopButton_Click"/>
-        <Button x:Name="ClearButton" Content="Clear" IsEnabled="False" HorizontalAlignment="Left" Height="25" Margin="230,380,0,0" VerticalAlignment="Top" Width="32" Click="ClearButton_Click"/>
-        <RadioButton x:Name="FromMic" Content="nhap tu mic" IsChecked="True" HorizontalAlignment="Left" Height="24" Margin="466,381,0,0" VerticalAlignment="Top" Width="97" Checked="FromMic_Checked"/>
-        <RadioButton x:Name="FromFile" Content="nhap tu file" HorizontalAlignment="Left" Height="24" Margin="591,381,0,0" VerticalAlignment="Top" Width="101" Checked="FromFile_Checked_1"/>
+        Title="khoaSpeechtoText" Height="518.313" Width="800">
+    <Grid Background="#FFF0C1C1" Margin="0,0,-0.4,-72" Height="492" VerticalAlignment="Top">
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Height="40" Margin="151,378,0,0" VerticalAlignment="Top" Width="83" Click="StartButton_Click" RenderTransformOrigin="0.355,3.444"/>
+        <Button x:Name="StopButton" Content="Stop" IsEnabled="False" HorizontalAlignment="Left" Height="41" Margin="153,431,0,0" VerticalAlignment="Top" Width="81" Click="StopButton_OnClickopButton_Click" RenderTransformOrigin="-0.621,1.411"/>
+        <Button x:Name="ClearButton" Content="Clear" IsEnabled="False" HorizontalAlignment="Left" Height="44" Margin="42,378,0,0" VerticalAlignment="Top" Width="80" Click="ClearButton_Click" RenderTransformOrigin="-4.098,1.95"/>
+        <RadioButton x:Name="FromMic" Content="nhap tu mic" IsChecked="{Binding ElementName=mainWindow, Path=FromMic}" HorizontalAlignment="Left" Height="24" Margin="323,386,0,0" VerticalAlignment="Top" Width="97" Checked="FromMic_Checked_1" />
+        <RadioButton x:Name="FromFile" Content="nhap tu file" IsChecked="{Binding ElementName=mainWindow, Path=FromFile}" HorizontalAlignment="Left" Height="24" Margin="439,386,0,0" VerticalAlignment="Top" Width="101" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" />
         <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="37,17,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7">
             <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman"></TextBlock>
         </ScrollViewer>
+        <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="444,417,0,0" TextWrapping="Wrap" Text="File am thanh" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.362,0.477" TextChanged="fileNameTextBox_TextChanged"/>
+        <Button x:Name="BtnFile" Content="Chon file" HorizontalAlignment="Left" Margin="461,456,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

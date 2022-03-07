@@ -9,6 +9,13 @@ namespace BaseService
     public class SpeechService
     {
         private SpeechConfig _config;
+        private string wavFileName;
+
+        public string WavFileName;
+        public void setWavFileName(string name)
+        {
+            this.wavFileName = name;
+        }
 
         public void SetConfig(string subscriptionKey, string region, string language)
         {
@@ -16,17 +23,32 @@ namespace BaseService
             _config.SpeechRecognitionLanguage = language;
         }
 
-        public async Task<string> Start(TaskCompletionSource<int> source, Action<string> callback)
+        public async Task<string> Start(TaskCompletionSource<int> source, Action<string> callback , bool isUseMic)
         {
-            using (var audioConfig = AudioConfig.FromDefaultMicrophoneInput())
+            if(isUseMic)
             {
-                using (var recognizer = new SpeechRecognizer(_config, audioConfig))
+                using (var audioConfig = AudioConfig.FromDefaultMicrophoneInput())
                 {
-                    await this.RunRecognizer(recognizer, source, callback).ConfigureAwait(false);
+                    using (var recognizer = new SpeechRecognizer(_config, audioConfig))
+                    {
+                        await this.RunRecognizer(recognizer, source, callback).ConfigureAwait(false);
+                    }
                 }
+
+                return "";
+            }
+            else
+            {
+                using (var audioInput = AudioConfig.FromWavFileInput(wavFileName))
+                {
+                    using (var recognizer = new SpeechRecognizer(_config, audioInput))
+                    {
+                        await this.RunRecognizer(recognizer, source, callback).ConfigureAwait(false);
+                    }
+                }
+                return "";
             }
 
-            return "";
         }
 
         private async Task RunRecognizer(SpeechRecognizer recognizer, TaskCompletionSource<int> source, Action<string> callback)
@@ -79,7 +101,6 @@ namespace BaseService
         /// </summary>
         private void RecognizedEventHandler(SpeechRecognitionEventArgs e, Action<string> callback)
         {
-            callback("Dấu chấm phẩy.".ProcessingContent());
             callback(e.Result.Text.ProcessingContent());
 
             // if access to the JSON is needed it can be obtained from Properties
