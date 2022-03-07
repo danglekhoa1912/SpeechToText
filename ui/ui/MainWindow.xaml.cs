@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,13 +31,16 @@ namespace ui
         private TaskCompletionSource<int> _stopTaskCompletionSource;
         private string wavFileName;
         private LowLevelKeyboardListener _listener;
+
+      
+
         public MainWindow()
         {
-
             InitializeComponent();
             BtnFile.IsEnabled = false;
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
+
             //TestProcessingContent();
             _speechService = new SpeechService();
             try
@@ -97,7 +102,11 @@ namespace ui
         {
             this.Dispatcher.Invoke(() =>
             {
+
+                SendMess send = new SendMess();
+                send.send(result);
                 DisplayText.Text += result;
+
             });
         }
 
@@ -109,7 +118,6 @@ namespace ui
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             DisplayText.Text = "";
-
         }
 
         //private void TestProcessingContent()
