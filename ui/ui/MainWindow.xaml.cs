@@ -17,9 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BaseService;
-using DesktopWPFAppLowLevelKeyboardHook;
 using Microsoft.Win32;
 using Notifications.Wpf;
+using NonInvasiveKeyboardHookLibrary;
 
 namespace ui
 {
@@ -31,9 +31,10 @@ namespace ui
         private SpeechService _speechService;
         private TaskCompletionSource<int> _stopTaskCompletionSource;
         private string wavFileName;
-        private LowLevelKeyboardListener _listener;
+        private KeyboardHookManager keyboardHookManager;
 
-      
+
+
 
         public MainWindow()
         {
@@ -58,7 +59,7 @@ namespace ui
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             StartEvent();
 
         }
@@ -99,8 +100,8 @@ namespace ui
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            StopEvent();  
+
+            StopEvent();
         }
 
         void StopEvent()
@@ -141,10 +142,6 @@ namespace ui
             DisplayText.Text = "";
         }
 
-        //private void TestProcessingContent()
-        //{
-        //    DisplayText.Text = "ádkajshdajk nhập dấu.".ProcessingContent();
-        //}
         public string GetFile()
         {
             string filePath = "";
@@ -195,24 +192,30 @@ namespace ui
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _listener = new LowLevelKeyboardListener();
-            _listener.OnKeyPressed += _listener_OnKeyPressed;
+            keyboardHookManager = new KeyboardHookManager();
+            keyboardHookManager.Start();
+            keyboardHookManager.RegisterHotkey(new[] { NonInvasiveKeyboardHookLibrary.ModifierKeys.Control }, 0x70, () =>
+             {
+                 this.Dispatcher.Invoke(() =>
+                 {
+                     StartEvent();
+                 });
+             }
+            );
+            keyboardHookManager.RegisterHotkey(new[] { NonInvasiveKeyboardHookLibrary.ModifierKeys.Control }, 0x71, () =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    StopEvent();
+                });
+            });
 
-            _listener.HookKeyboard();
         }
-        void _listener_OnKeyPressed(object sender, KeyPressedArgs e )
-        {
-            if (e.KeyPressed.ToString() == "F1")
-                StartEvent();
-            if (e.KeyPressed.ToString() == "F2")
-                StopEvent();
-
-              }
-
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            _listener.UnHookKeyboard();
+            keyboardHookManager.UnregisterAll();
+            keyboardHookManager.Stop();
         }
     }
 }
