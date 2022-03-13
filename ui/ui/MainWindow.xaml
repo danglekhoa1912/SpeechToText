@@ -22,4 +22,5 @@
         <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="235.156,417,0,0" TextWrapping="Wrap" Text="File am thanh" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.362,0.477" TextChanged="fileNameTextBox_TextChanged" Grid.Column="1"/>
         <Button x:Name="BtnFile" Content="Chon file" HorizontalAlignment="Left" Margin="252.156,456,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="1"/>
     </Grid>
+
 </Window>

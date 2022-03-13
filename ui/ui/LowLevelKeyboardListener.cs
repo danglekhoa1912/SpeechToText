@@ -61,7 +61,10 @@ namespace DesktopWPFAppLowLevelKeyboardHook
             {
                 int vkCode = Marshal.ReadInt32(lParam);
 
-                if (OnKeyPressed != null) { OnKeyPressed(this, new KeyPressedArgs(KeyInterop.KeyFromVirtualKey(vkCode))); }
+                if (OnKeyPressed != null) {
+                    OnKeyPressed(this,
+                        new KeyPressedArgs(KeyInterop.KeyFromVirtualKey(vkCode))); 
+                }
             }
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);

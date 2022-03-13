@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using BaseService;
 using DesktopWPFAppLowLevelKeyboardHook;
 using Microsoft.Win32;
+using Notifications.Wpf;
 
 namespace ui
 {
@@ -57,7 +58,9 @@ namespace ui
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            
             StartEvent();
+
         }
 
         void StartEvent()
@@ -83,10 +86,20 @@ namespace ui
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
 
+            var notificationManager = new NotificationManager();
+
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "Thông Báo 🎉🎉",
+                Message = "Chương trình bắt đầu thực thi",
+                Type = NotificationType.Success
+            });
+
         }
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
         {
+            
             StopEvent();  
         }
 
@@ -96,6 +109,14 @@ namespace ui
             StartButton.IsEnabled = true;
             StopButton.IsEnabled = false;
             ClearButton.IsEnabled = true;
+            var notificationManager = new NotificationManager();
+
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "Thông Báo 🎉🎉",
+                Message = "Chương trình dã tạm dừng",
+                Type = NotificationType.Error
+            });
         }
 
         private void RecognitionCallback(string result)
@@ -179,15 +200,14 @@ namespace ui
 
             _listener.HookKeyboard();
         }
-        void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
+        void _listener_OnKeyPressed(object sender, KeyPressedArgs e )
         {
             if (e.KeyPressed.ToString() == "F1")
                 StartEvent();
-             if (e.KeyPressed.ToString() == "F2")
+            if (e.KeyPressed.ToString() == "F2")
                 StopEvent();
-            if (e.KeyPressed.ToString() == "F3")
-                DisplayText.Text = "";
-        }
+
+              }
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
