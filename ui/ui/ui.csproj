@@ -15,6 +15,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,8 +31,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,6 +62,9 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluorineFx">
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\FluorineFx.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.3.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
     </Reference>
@@ -119,8 +122,11 @@
     <Reference Include="Notifications.Wpf, Version=0.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Notifications.Wpf.0.1.1\lib\net461\Notifications.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="OzekiMediaGateway">
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\OzekiMediaGateway.dll</HintPath>
+    </Reference>
     <Reference Include="OzekiSDK">
-      <HintPath>C:\Users\Admin\Downloads\google-stt\Google_STT\SDK\.NET4\OzekiSDK.dll</HintPath>
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\OzekiSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">

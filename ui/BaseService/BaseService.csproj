@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluorineFx">
-      <HintPath>C:\Users\Admin\Downloads\google-stt\Google_STT\SDK\.NET4\FluorineFx.dll</HintPath>
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\FluorineFx.dll</HintPath>
     </Reference>
     <Reference Include="Google.Api.CommonProtos, Version=2.3.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Api.CommonProtos.2.3.0\lib\net461\Google.Api.CommonProtos.dll</HintPath>
@@ -97,10 +97,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OzekiMediaGateway">
-      <HintPath>C:\Users\Admin\Downloads\google-stt\Google_STT\SDK\.NET4\OzekiMediaGateway.dll</HintPath>
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\OzekiMediaGateway.dll</HintPath>
     </Reference>
     <Reference Include="OzekiSDK">
-      <HintPath>C:\Users\Admin\Downloads\google-stt\Google_STT\SDK\.NET4\OzekiSDK.dll</HintPath>
+      <HintPath>C:\Users\giahu\OneDrive\Máy tính\Google_STT\SDK\.NET4\OzekiSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="nckh-speechtotext-344006-314d7682f67d.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -48,7 +48,7 @@ namespace BaseService
 
         private void Init(Action<string> callback)
         {
-            System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"C:\Users\Admin\Downloads\nckh-speechtotext-344006-314d7682f67d.json");
+            System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @".\nckh-speechtotext-344006-314d7682f67d.json");
 
             speech = SpeechClient.Create();
 
