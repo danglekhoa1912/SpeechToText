@@ -11,6 +11,7 @@ using BaseService;
 using Microsoft.Win32;
 using Notifications.Wpf;
 using NonInvasiveKeyboardHookLibrary;
+using Ozeki.Media;
 
 namespace ui
 {
@@ -24,7 +25,11 @@ namespace ui
         private string wavFileName;
         private KeyboardHookManager keyboardHookManager;
 
+        static MediaConnector connector;
 
+        static Microphone microphone;
+
+        static GoogleSTT googleSTT;
 
 
         public MainWindow()
@@ -50,8 +55,8 @@ namespace ui
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-
-            StartEvent();
+            RunFromMic();
+            //StartEvent();
 
         }
 
@@ -91,8 +96,8 @@ namespace ui
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
         {
-
-            StopEvent();
+            StopMic();
+            //StopEvent();
         }
 
         void StopEvent()
@@ -118,7 +123,6 @@ namespace ui
         {
             this.Dispatcher.Invoke(() =>
             {
-
                 SendMess send = new SendMess();
                 send.send(result);
                 DisplayText.Text += result;
@@ -210,6 +214,84 @@ namespace ui
         {
             keyboardHookManager.UnregisterAll();
             keyboardHookManager.Stop();
+        }
+
+        void RunFromMic()
+        {
+
+            connector = new MediaConnector();
+            microphone = Microphone.GetDefaultDevice();
+
+            StartButton.IsEnabled = false;
+            StopButton.IsEnabled = true;
+            ClearButton.IsEnabled = false;
+
+            var notificationManager = new NotificationManager();
+
+           
+
+            var format = new WaveFormat(16000, 16, 1);
+
+            microphone.ChangeFormat(format);
+
+            googleSTT =
+            new GoogleSTT(GoogleLanguage.Vietnamese,
+                                        format.AsVoIPMediaFormat(),RecognitionCallback);
+
+            connector.Connect(microphone, googleSTT);
+
+            microphone.Start();
+
+            googleSTT.Start();
+
+            Console.WriteLine("Speak !!");
+            notificationManager.Show(new NotificationContent
+            {
+                Title = "Thông Báo 🎉🎉",
+                Message = "Chương trình bắt đầu thực thi",
+                Type = NotificationType.Success
+            }, expirationTime: TimeSpan.FromSeconds(3));
+
+            //Console.ReadLine();
+
+            //Console.WriteLine("Disconnect");
+
+            //connector.Disconnect(microphone, googleSTT);
+
+            //Console.WriteLine("Google dispose");
+
+            //googleSTT.Dispose();
+            //googleSTT = null;
+
+            //Console.WriteLine("microphone dispose");
+
+            //microphone.Dispose();
+            //microphone = null;
+
+            //Console.WriteLine("connector dispose");
+
+            //connector.Dispose();
+            //connector = null;
+        }
+        void StopMic()
+        {
+            microphone.Stop();
+
+            googleSTT.Stop();
+            StartButton.IsEnabled = true;
+            StopButton.IsEnabled = false;
+            ClearButton.IsEnabled = true;
+            var notificationManager = new NotificationManager();
+
+            notificationManager.Show(new NotificationContent
+            {
+
+                Title = "Thông Báo 🎉🎉",
+                Message = "Chương trình dã tạm dừng",
+                Type = NotificationType.Error,
+
+
+            }, expirationTime: TimeSpan.FromSeconds(3));
         }
     }
 }

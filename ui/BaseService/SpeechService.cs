@@ -16,7 +16,6 @@ namespace BaseService
         {
             this.wavFileName = name;
         }
-
         public void SetConfig(string subscriptionKey, string region, string language)
         {
             _config = SpeechConfig.FromSubscription(subscriptionKey, region);
