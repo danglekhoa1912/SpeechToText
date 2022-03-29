@@ -13,6 +13,7 @@ using Notifications.Wpf;
 using NonInvasiveKeyboardHookLibrary;
 using Ozeki.Media;
 using System.Threading;
+using Application = System.Windows.Forms.Application;
 
 namespace ui
 {
@@ -60,7 +61,7 @@ namespace ui
                 Message = "Chương trình bắt đầu thực thi",
                 Type = NotificationType.Success
             }, expirationTime: TimeSpan.FromSeconds(3));
-            if ((bool)FromFile.IsChecked)
+            if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
             {
                 RunFromFile();
                 StopEvent();
@@ -103,11 +104,11 @@ namespace ui
         {
             SendMess send = new SendMess();
 
-                this.Dispatcher.Invoke(() =>
-                {
-                    DisplayText.Text += result;
-                    send.send(result);
-                });
+            this.Dispatcher.Invoke(() =>
+            {
+                DisplayText.Text += result;
+                send.Run(result);
+            });
 
         }
 
@@ -183,6 +184,7 @@ namespace ui
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Environment.Exit(0);
             keyboardHookManager.UnregisterAll();
             keyboardHookManager.Stop();
         }

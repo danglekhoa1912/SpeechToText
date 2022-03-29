@@ -47,10 +47,9 @@ namespace BaseService
 
             Init(callback,filePath);
         }
-
         private void Init(Action<string> callback,String filePath)
         {
-            System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @".\nckh-speechtotext-344006-314d7682f67d.json");
+            System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @"../../../../keyConfig.json");
 
             speech = SpeechClient.Create();
             if (IsMic)
