@@ -19,7 +19,7 @@
         <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="37,17,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2">
             <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman"></TextBlock>
         </ScrollViewer>
-        <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="235.156,417,0,0" TextWrapping="Wrap" Text="File am thanh" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.362,0.477" TextChanged="fileNameTextBox_TextChanged" Grid.Column="1"/>
+        <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="235.156,417,0,0" TextWrapping="Wrap" Text="File am thanh" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.362,0.477"  Grid.Column="1"/>
         <Button x:Name="BtnFile" Content="Chon file" HorizontalAlignment="Left" Margin="252.156,456,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="1"/>
     </Grid>
 

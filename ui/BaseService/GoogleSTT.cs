@@ -35,7 +35,7 @@ namespace BaseService
         //            new AudioFormat())
         //{ }
 
-        public GoogleSTT(GoogleLanguage languageCode, AudioFormat format, Action<string> callback)
+        public GoogleSTT(GoogleLanguage languageCode, AudioFormat format, Action<string> callback,bool isMic,String filePath=null)
         {
             Language = languageCode;
 
@@ -43,60 +43,80 @@ namespace BaseService
 
             _format = format;
 
-            Init(callback);
+            IsMic = isMic;
+
+            Init(callback,filePath);
         }
 
-        private void Init(Action<string> callback)
+        private void Init(Action<string> callback,String filePath)
         {
             System.Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", @".\nckh-speechtotext-344006-314d7682f67d.json");
 
             speech = SpeechClient.Create();
-
-            streamingCall = speech.StreamingRecognize();
-
-            streamingCall.WriteAsync(
-               new StreamingRecognizeRequest()
-               {
-                   StreamingConfig = new StreamingRecognitionConfig()
-                   {
-                       Config = new RecognitionConfig()
-                       {
-                           Encoding =
-                           RecognitionConfig.Types.AudioEncoding.Linear16,
-                           SampleRateHertz = 16000,
-                           LanguageCode = LanguageCodes.Vietnamese.Vietnam,
-                       },
-                       InterimResults = true,
-                   }
-               });
-
-             printResponses = Task.Run(async () =>
+            if (IsMic)
             {
-                while (await streamingCall.GrpcCall.ResponseStream.MoveNext(
-                    default(CancellationToken)))
-                {
-                    foreach (var result in streamingCall.GrpcCall.ResponseStream
-                        .Current.Results)
-                    {
-                        Console.WriteLine(result);
-                        if (result.IsFinal)
-                        {
-                            var top =
-                            result.Alternatives.OrderBy(x => x.Confidence).First();
+                streamingCall = speech.StreamingRecognize();
 
-                            Console.WriteLine(top.Transcript);
-                            callback(top.Transcript);
+                streamingCall.WriteAsync(
+                   new StreamingRecognizeRequest()
+                   {
+                       StreamingConfig = new StreamingRecognitionConfig()
+                       {
+                           Config = new RecognitionConfig()
+                           {
+                               Encoding =
+                           RecognitionConfig.Types.AudioEncoding.Linear16,
+                               SampleRateHertz = 16000,
+                               LanguageCode = LanguageCodes.Vietnamese.Vietnam,
+                           },
+                           InterimResults = true,
+                       }
+                   });
+
+                printResponses = Task.Run(async () =>
+                {
+                    while (await streamingCall.GrpcCall.ResponseStream.MoveNext(
+                        default(CancellationToken)))
+                    {
+                        foreach (var result in streamingCall.GrpcCall.ResponseStream
+                            .Current.Results)
+                        {
+                            if (result.IsFinal)
+                            {
+                                var top =
+                                result.Alternatives.OrderBy(x => x.Confidence).First();
+                                callback(top.Transcript);
+                            }
+
                         }
-                            
-                        }
+                    }
+                });
+            }
+            else
+            {
+                var config = new RecognitionConfig
+                {
+                    Encoding = RecognitionConfig.Types.AudioEncoding.Flac,
+                    SampleRateHertz = 24000,
+                    LanguageCode = LanguageCodes.Vietnamese.Vietnam,
+                };
+                var audio = RecognitionAudio.FromFile(filePath);
+                var response = speech.Recognize(config, audio);
+                foreach (var result in response.Results)
+                {
+                    foreach (var alternative in result.Alternatives)
+                    {
+                        callback( alternative.Transcript);
+                    }
                 }
-            });
+            }
 
         }
 
         object writeLock = new object();
 
         public bool IsRunning { get; private set; }
+        public bool IsMic { get; private set; }
 
         public void Stop()
         {
@@ -110,7 +130,7 @@ namespace BaseService
 
         protected override void OnDataReceived(object sender, AudioData data)
         {
-            if (!IsRunning) return;
+            if (!IsRunning||!IsMic) return;
 
             lock (writeLock)
             {

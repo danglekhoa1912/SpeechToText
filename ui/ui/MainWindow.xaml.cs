@@ -12,6 +12,7 @@ using Microsoft.Win32;
 using Notifications.Wpf;
 using NonInvasiveKeyboardHookLibrary;
 using Ozeki.Media;
+using System.Threading;
 
 namespace ui
 {
@@ -20,9 +21,6 @@ namespace ui
     /// </summary>
     public partial class MainWindow : Window
     {
-        private SpeechService _speechService;
-        private TaskCompletionSource<int> _stopTaskCompletionSource;
-        private string wavFileName;
         private KeyboardHookManager keyboardHookManager;
 
         static MediaConnector connector;
@@ -40,45 +38,16 @@ namespace ui
             fileNameTextBox.IsReadOnly = true;
 
             //TestProcessingContent();
-            _speechService = new SpeechService();
-            try
-            {
-                string key = System.IO.File.ReadAllText("./configkey.txt");
-                _speechService.SetConfig(key, "eastus", "vi-VN");
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            RunFromMic();
-            //StartEvent();
-
+            StartEvent();
         }
 
         void StartEvent()
         {
-            if ((bool)FromFile.IsChecked)
-            {
-                wavFileName = GetFile();
-                if (wavFileName.Length <= 0) return;
-                Task.Run(() => this.PlayAudioFile());
-                _speechService.setWavFileName(wavFileName);
-                _stopTaskCompletionSource = new TaskCompletionSource<int>();
-                Task.Run(async () => { await _speechService.Start(_stopTaskCompletionSource, RecognitionCallback, false).ConfigureAwait(false); });
-            }
-
-            else
-            {
-                _stopTaskCompletionSource = new TaskCompletionSource<int>();
-                Task.Run(async () => { await _speechService.Start(_stopTaskCompletionSource, RecognitionCallback, true).ConfigureAwait(false); });
-            }
-
-
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
@@ -91,18 +60,29 @@ namespace ui
                 Message = "Chương trình bắt đầu thực thi",
                 Type = NotificationType.Success
             }, expirationTime: TimeSpan.FromSeconds(3));
+            if ((bool)FromFile.IsChecked)
+            {
+                RunFromFile();
+                StopEvent();
+            }
 
+            else
+            {
+                RunFromMic();
+            }
         }
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
         {
-            StopMic();
-            //StopEvent();
+            StopEvent();
         }
 
         void StopEvent()
         {
-            _stopTaskCompletionSource.TrySetResult(0);
+            if ((bool)FromMic.IsChecked)
+            {
+                StopMic();
+            }
             StartButton.IsEnabled = true;
             StopButton.IsEnabled = false;
             ClearButton.IsEnabled = true;
@@ -110,30 +90,27 @@ namespace ui
 
             notificationManager.Show(new NotificationContent
             {
-                
+
                 Title = "Thông Báo 🎉🎉",
                 Message = "Chương trình dã tạm dừng",
                 Type = NotificationType.Error,
-                
-                
-            },expirationTime:TimeSpan.FromSeconds(3));
+
+
+            }, expirationTime: TimeSpan.FromSeconds(3));
         }
 
         private void RecognitionCallback(string result)
         {
-            this.Dispatcher.Invoke(() =>
-            {
-                SendMess send = new SendMess();
-                send.send(result);
-                DisplayText.Text += result;
+            SendMess send = new SendMess();
 
-            });
-        }
-
-        private void FromMic_Checked(object sender, RoutedEventArgs e)
-        {
+                this.Dispatcher.Invoke(() =>
+                {
+                    DisplayText.Text += result;
+                    send.send(result);
+                });
 
         }
+
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
@@ -158,27 +135,21 @@ namespace ui
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            OpenFileDialog fileDialog = new OpenFileDialog();
+            OpenFileDialog fileDialog = new OpenFileDialog()
+            {
+                FileName = "Select a text file",
+                Filter = "Text files (*.flac)|*.flac",
+                Title = "Open text file"
+            };
             if (fileDialog.ShowDialog() == true)
                 this.fileNameTextBox.Text = fileDialog.FileName;
 
-        }
-        private void PlayAudioFile()
-        {
-            SoundPlayer player = new SoundPlayer(wavFileName);
-            player.Load();
-            player.Play();
         }
 
         private void FromFile_Checked(object sender, RoutedEventArgs e)
         {
             BtnFile.IsEnabled = true;
             fileNameTextBox.IsEnabled = true;
-
-        }
-
-        private void fileNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
 
@@ -216,19 +187,24 @@ namespace ui
             keyboardHookManager.Stop();
         }
 
+        void RunFromFile()
+        {
+            String filePath = GetFile();
+
+            if (filePath != "")
+            {
+                var format = new WaveFormat(24000, 16, 1);
+
+                googleSTT =
+                new GoogleSTT(GoogleLanguage.Vietnamese,
+                                            format.AsVoIPMediaFormat(), RecognitionCallback, false, filePath);
+            }
+        }
+
         void RunFromMic()
         {
-
             connector = new MediaConnector();
             microphone = Microphone.GetDefaultDevice();
-
-            StartButton.IsEnabled = false;
-            StopButton.IsEnabled = true;
-            ClearButton.IsEnabled = false;
-
-            var notificationManager = new NotificationManager();
-
-           
 
             var format = new WaveFormat(16000, 16, 1);
 
@@ -236,7 +212,7 @@ namespace ui
 
             googleSTT =
             new GoogleSTT(GoogleLanguage.Vietnamese,
-                                        format.AsVoIPMediaFormat(),RecognitionCallback);
+                                        format.AsVoIPMediaFormat(), RecognitionCallback, true);
 
             connector.Connect(microphone, googleSTT);
 
@@ -244,13 +220,6 @@ namespace ui
 
             googleSTT.Start();
 
-            Console.WriteLine("Speak !!");
-            notificationManager.Show(new NotificationContent
-            {
-                Title = "Thông Báo 🎉🎉",
-                Message = "Chương trình bắt đầu thực thi",
-                Type = NotificationType.Success
-            }, expirationTime: TimeSpan.FromSeconds(3));
 
             //Console.ReadLine();
 
@@ -276,22 +245,7 @@ namespace ui
         void StopMic()
         {
             microphone.Stop();
-
             googleSTT.Stop();
-            StartButton.IsEnabled = true;
-            StopButton.IsEnabled = false;
-            ClearButton.IsEnabled = true;
-            var notificationManager = new NotificationManager();
-
-            notificationManager.Show(new NotificationContent
-            {
-
-                Title = "Thông Báo 🎉🎉",
-                Message = "Chương trình dã tạm dừng",
-                Type = NotificationType.Error,
-
-
-            }, expirationTime: TimeSpan.FromSeconds(3));
         }
     }
 }
