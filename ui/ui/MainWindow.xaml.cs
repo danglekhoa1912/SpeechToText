@@ -34,7 +34,7 @@ namespace ui
         public MainWindow()
         {
             InitializeComponent();
-            BtnFile.IsEnabled = false;
+            //BtnFile.IsEnabled = false;
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
 
@@ -52,6 +52,7 @@ namespace ui
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
+           
 
             var notificationManager = new NotificationManager();
 
@@ -80,7 +81,7 @@ namespace ui
 
         void StopEvent()
         {
-            if ((bool)FromMic.IsChecked)
+            if ((bool)FromMic.IsChecked)    
             {
                 StopMic();
             }
@@ -106,8 +107,8 @@ namespace ui
 
             this.Dispatcher.Invoke(() =>
             {
-                DisplayText.Text += result;
-                send.Run(result);
+                DisplayText.Text += BusinessLogic.ProcessingContent(result);
+                send.Run(BusinessLogic.ProcessingContent(result));
             });
 
         }
@@ -149,15 +150,18 @@ namespace ui
 
         private void FromFile_Checked(object sender, RoutedEventArgs e)
         {
-            BtnFile.IsEnabled = true;
-            fileNameTextBox.IsEnabled = true;
-
+            /*BtnFile.IsEnabled = true;
+            fileNameTextBox.IsEnabled = true;*/
+            BtnFile.Visibility = Visibility.Visible;
+            fileNameTextBox.Visibility = Visibility.Visible;
         }
 
         private void FromMic_Checked_1(object sender, RoutedEventArgs e)
         {
-            BtnFile.IsEnabled = false;
-            fileNameTextBox.IsEnabled = false;
+            /*BtnFile.IsEnabled = false;
+            fileNameTextBox.IsEnabled = false;*/
+            BtnFile.Visibility = Visibility.Hidden;
+            fileNameTextBox.Visibility = Visibility.Hidden;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

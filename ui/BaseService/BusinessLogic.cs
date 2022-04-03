@@ -14,50 +14,50 @@ namespace BaseService
                 {
                     contents = contents.Replace("Nhập dấu chấm phẩy.", "; ");
                     contents = contents.Replace(" nhập dấu chấm phẩy.", "; ");
-                    contents = contents.Replace("Nhập dấu chấm phẩy ", "; ");
-                    contents = contents.Replace(" nhập dấu chấm phẩy ", "; ");
+                    contents = contents.Replace("Nhập dấu chấm phẩy", "; ");
+                    contents = contents.Replace("nhập dấu chấm phẩy", "; ");
 
                     //dấu chấm hỏi
                     contents = contents.Replace("Nhập dấu chấm hỏi.", "? ");
                     contents = contents.Replace(" nhập dấu chấm hỏi.", "? ");
-                    contents = contents.Replace("Nhập dấu chấm hỏi ", "? ");
-                    contents = contents.Replace(" nhập dấu chấm hỏi ", "? ");
+                    contents = contents.Replace("Nhập dấu chấm hỏi", "? ");
+                    contents = contents.Replace("nhập dấu chấm hỏi", "? ");
 
                     //dấu chấm than
                     contents = contents.Replace("Nhập dấu chấm than.", "! ");
                     contents = contents.Replace(" nhập dấu chấm than.", "! ");
-                    contents = contents.Replace("Nhập dấu chấm than ", "! ");
-                    contents = contents.Replace(" nhập dấu chấm than ", "! ");
+                    contents = contents.Replace("Nhập dấu chấm than", "! ");
+                    contents = contents.Replace("nhập dấu chấm than", "! ");
 
                     //dấu chấm
                     contents = contents.Replace("Nhập dấu chấm.", ". ");
                     contents = contents.Replace(" nhập dấu chấm.", ". ");
-                    contents = contents.Replace("Nhập dấu chấm ", ". ");
-                    contents = contents.Replace(" nhập dấu chấm ", ". ");
+                    contents = contents.Replace("Nhập dấu chấm", ". ");
+                    contents = contents.Replace("nhập dấu chấm", ". ");
 
                     //dấu phẩy
                     contents = contents.Replace("Nhập dấu phẩy.", ", ");
                     contents = contents.Replace(" nhập dấu phẩy.", ", ");
                     contents = contents.Replace("Nhập dấu phẩy", ", ");
-                    contents = contents.Replace(" nhập dấu phẩy ", ", ");
+                    contents = contents.Replace("nhập dấu phẩy", ", ");
 
                     //dấu xuống dòng
                     contents = contents.Replace("Nhập dấu xuống dòng.", "\n");
                     contents = contents.Replace(" nhập dấu xuống dòng.", "\n");
                     contents = contents.Replace("Nhập dấu xuống dòng ", "\n");
-                    contents = contents.Replace(" nhập dấu xuống dòng ", "\n");
+                    contents = contents.Replace("nhập dấu xuống dòng", "\n");
 
                     //dấu hai chấm
                     contents = contents.Replace("Nhập dấu hai chấm.", ": ");
                     contents = contents.Replace(" nhập dấu hai chấm.", ": ");
                     contents = contents.Replace("Nhập dấu hai chấm", ": ");
-                    contents = contents.Replace(" nhập dấu hai chấm ", ": ");
+                    contents = contents.Replace("nhập dấu hai chấm", ": ");
 
                     //dấu gạch ngang 
                     contents = contents.Replace("Nhập dấu gạch ngang.", "- ");
                     contents = contents.Replace(" nhập dấu gạch ngang.", "- ");
                     contents = contents.Replace("Nhập dấu gạch ngang", "- ");
-                    contents = contents.Replace(" nhập dấu gạch ngang ", "- ");
+                    contents = contents.Replace("nhập dấu gạch ngang", "- ");
 
                     //dấu 3 chấm
                     contents = contents.Replace("nhập dấu 3 chấm", "... ");

@@ -237,6 +237,36 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="text-to-speech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="text-to-speech %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\play-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="play-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="folder %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Picture\eraser.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.38.1\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.38.1\build\net45\Grpc.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

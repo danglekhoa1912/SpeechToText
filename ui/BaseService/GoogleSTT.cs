@@ -30,11 +30,6 @@ namespace BaseService
             }
         }
 
-        //public GoogleSTT(string languageCode)
-        //    : this(GoogleLanguageExt.GetGoogleLanguageFromCode(languageCode),
-        //            new AudioFormat())
-        //{ }
-
         public GoogleSTT(GoogleLanguage languageCode, AudioFormat format, Action<string> callback,bool isMic,String filePath=null)
         {
             Language = languageCode;

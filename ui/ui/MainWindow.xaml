@@ -5,22 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ui"
         mc:Ignorable="d"
-        Title="khoaSpeechtoText" Height="518.313" Width="800" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Speech To Text" Height="518.313" Width="800" Loaded="Window_Loaded" Closing="Window_Closing" Background="{x:Null}" Icon="text-to-speech (1).png" WindowStartupLocation="CenterScreen">
     <Grid Background="#FFF0C1C1" Margin="0,0,-0.4,-72" Height="492" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="209*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="173*"/>
             <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Height="40" Margin="151,378,0,0" VerticalAlignment="Top" Width="83" Click="StartButton_Click" RenderTransformOrigin="0.355,3.444" Grid.ColumnSpan="2"/>
-        <Button x:Name="StopButton" Content="Stop" IsEnabled="False" HorizontalAlignment="Left" Height="41" Margin="153,431,0,0" VerticalAlignment="Top" Width="81" Click="StopButton_OnClickopButton_Click" RenderTransformOrigin="-0.621,1.411" Grid.ColumnSpan="2"/>
-        <Button x:Name="ClearButton" Content="Clear" IsEnabled="False" HorizontalAlignment="Left" Height="44" Margin="42,378,0,0" VerticalAlignment="Top" Width="80" Click="ClearButton_Click" RenderTransformOrigin="-4.098,1.95"/>
-        <RadioButton x:Name="FromMic" Content="nhap tu mic" IsChecked="{Binding ElementName=mainWindow, Path=FromMic}" HorizontalAlignment="Left" Height="24" Margin="114.156,386,0,0" VerticalAlignment="Top" Width="97" Checked="FromMic_Checked_1" Grid.Column="1" />
-        <RadioButton x:Name="FromFile" Content="nhap tu file" IsChecked="{Binding ElementName=mainWindow, Path=FromFile}" HorizontalAlignment="Left" Height="24" Margin="230.156,386,0,0" VerticalAlignment="Top" Width="101" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" Grid.Column="1" />
-        <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="37,17,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2">
+        <Button x:Name="StartButton" HorizontalAlignment="Left" Height="40" Margin="233.2,402,0,0" VerticalAlignment="Top" Width="80" Click="StartButton_Click" RenderTransformOrigin="1,1" Grid.Column="2" SnapsToDevicePixels="True" ClickMode="Press" BorderThickness="0" Foreground="#FFDA0E0E">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Picture/start.png" Stretch="Uniform"/>
+            </Button.OpacityMask>
+            <Button.Background>
+                <ImageBrush ImageSource="Picture/start.png" Stretch="Uniform" />
+            </Button.Background>
+        </Button>
+        <Button x:Name="StopButton" IsEnabled="False" HorizontalAlignment="Left" Height="40" Margin="342.2,402,0,0" VerticalAlignment="Top" Width="80" Click="StopButton_OnClickopButton_Click" RenderTransformOrigin="-0.621,1.411" Grid.Column="2" BorderThickness="0" Foreground="{x:Null}">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="Picture/pause.png" Stretch="Uniform"/>
+            </Button.OpacityMask>
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="Picture/pause.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="ClearButton" Content="" IsEnabled="False" HorizontalAlignment="Left" Height="40" Margin="457.2,402,0,0" VerticalAlignment="Top" Width="80" Click="ClearButton_Click" RenderTransformOrigin="-4.098,1.95" Grid.Column="2" ClickMode="Press">
+            <Button.OpacityMask>
+                <ImageBrush Stretch="Uniform" ImageSource="Picture/eraser.png"/>
+            </Button.OpacityMask>
+            <Button.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="Picture/eraser.png"/>
+            </Button.Background>
+        </Button>
+        <RadioButton x:Name="FromMic" Content="Type from micro" IsChecked="{Binding ElementName=mainWindow, Path=FromMic}" HorizontalAlignment="Left" Height="24" Margin="5,401,0,0" VerticalAlignment="Top" Width="111" Checked="FromMic_Checked_1" Grid.Column="1" />
+        <RadioButton x:Name="FromFile" Content="Type from sound file" IsChecked="{Binding ElementName=mainWindow, Path=FromFile}" HorizontalAlignment="Left" Height="24" Margin="5,431,0,0" VerticalAlignment="Top" Width="138" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" Grid.Column="1" />
+        <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="0.8,17,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2" Grid.Column="1">
             <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman"></TextBlock>
         </ScrollViewer>
-        <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="235.156,417,0,0" TextWrapping="Wrap" Text="File am thanh" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.362,0.477"  Grid.Column="1"/>
-        <Button x:Name="BtnFile" Content="Chon file" HorizontalAlignment="Left" Margin="252.156,456,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="1"/>
+        <TextBox x:Name="fileNameTextBox" HorizontalAlignment="Left" Height="23" Margin="148,428,0,0" TextWrapping="Wrap" Text="Wav File" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.018,0.53"  Grid.Column="1" TextAlignment="Center" Grid.ColumnSpan="2" IsEnabled="False" Focusable="False" AllowDrop="False"/>
+        <Button x:Name="BtnFile" Content="" Margin="101.2,428,0,0" VerticalAlignment="Top" Width="25" Click="Button_Click" Grid.Column="2" HorizontalAlignment="Left" FontFamily="Segoe UI Emoji" RenderTransformOrigin="2.348,0.385" Height="25" Foreground="{x:Null}" Focusable="False" Cursor="Hand" ClickMode="Press">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush ImageSource="folder (1).png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
     </Grid>
 
 </Window>
