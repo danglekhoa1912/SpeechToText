@@ -52,7 +52,7 @@
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top" Margin="10,426,0,0">
             <RadioButton x:Name="FromMic" Content="Nhập từ giọng nói" IsChecked="{Binding FromMic, ElementName=mainWindow}" Height="24" Width="138" Checked="FromMic_Checked_1" FontWeight="Medium" />
             <RadioButton x:Name="FromFile" Content="Nhập từ File" IsChecked="{Binding FromFile, ElementName=mainWindow}" Height="24" Width="104" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" FontWeight="Medium" />
-            <TextBox x:Name="fileNameTextBox" Height="24" TextWrapping="Wrap" Text="Wav File" Width="113" RenderTransformOrigin="0.018,0.53" TextAlignment="Center" IsEnabled="False" Focusable="False" AllowDrop="False"/>
+            <TextBox x:Name="fileNameTextBox" Height="24" TextWrapping="Wrap" Text="Flac File" Width="113" RenderTransformOrigin="0.018,0.53" TextAlignment="Center" IsEnabled="False" Focusable="False" AllowDrop="False"/>
             <Button x:Name="BtnFile" Content="" Width="28" Click="Button_Click" FontFamily="Segoe UI Emoji" RenderTransformOrigin="2.348,0.385" Height="36" Foreground="{x:Null}" Focusable="False" Cursor="Hand" ClickMode="Press">
                 <Button.OpacityMask>
                     <ImageBrush Stretch="Uniform" ImageSource="/Picture/folder (1).png"/>

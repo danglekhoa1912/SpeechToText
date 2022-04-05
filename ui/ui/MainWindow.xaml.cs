@@ -88,11 +88,11 @@ namespace ui
                 StopMic();
             }
             StartButton.IsEnabled = true;
-            slash_1.Visibility= Visibility.Hidden;
+            slash_1.Visibility = Visibility.Hidden;
             StopButton.IsEnabled = false;
             slash2.Visibility = Visibility.Visible;
             ClearButton.IsEnabled = true;
-            slash3.Visibility=Visibility.Hidden;
+            slash3.Visibility = Visibility.Hidden;
             var notificationManager = new NotificationManager();
 
             notificationManager.Show(new NotificationContent
@@ -110,7 +110,7 @@ namespace ui
 
             this.Dispatcher.Invoke(() =>
             {
-                DisplayText.Text +="-"+ BusinessLogic.ProcessingContent(result)+"\n";
+                DisplayText.Text += "-" + BusinessLogic.ProcessingContent(result) + "\n";
                 send.Run(BusinessLogic.ProcessingContent(result));
             });
 
@@ -213,7 +213,7 @@ namespace ui
             keyboardHookManager.Stop();
         }
 
-        void RunFromFile()
+        async void RunFromFile()
         {
             String filePath = GetFile();
 
