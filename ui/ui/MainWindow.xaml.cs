@@ -14,6 +14,7 @@ using NonInvasiveKeyboardHookLibrary;
 using Ozeki.Media;
 using System.Threading;
 using Application = System.Windows.Forms.Application;
+using System.Reflection;
 
 namespace ui
 {
@@ -30,16 +31,24 @@ namespace ui
 
         static GoogleSTT googleSTT;
 
+        WMPLib.WindowsMediaPlayer wplayer;
 
         public MainWindow()
         {
             InitializeComponent();
             //BtnFile.IsEnabled = false;
+            help();
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
-
             //TestProcessingContent();
 
+        }
+
+        private void help()
+        {
+            wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = Path.GetFullPath(@"../../../../Sound/Help-All.mp3");
+            wplayer.controls.play();
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -49,13 +58,13 @@ namespace ui
 
         void StartEvent()
         {
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
+            wplayer.controls.play();
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
-           
-
             var notificationManager = new NotificationManager();
-
             notificationManager.Show(new NotificationContent
             {
                 Title = "Thông Báo 🎉🎉",
@@ -81,6 +90,9 @@ namespace ui
 
         void StopEvent()
         {
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = Path.GetFullPath(@"../../../../Sound/Pause.mp3");
+            wplayer.controls.play();
             if ((bool)FromMic.IsChecked)    
             {
                 StopMic();
@@ -116,6 +128,14 @@ namespace ui
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            ClearEvent();
+        }
+
+        private void ClearEvent()
+        {
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = Path.GetFullPath(@"../../../../Sound/delete.mp3");
+            wplayer.controls.play();
             DisplayText.Text = "";
         }
 
@@ -183,7 +203,13 @@ namespace ui
                     StopEvent();
                 });
             });
-
+            keyboardHookManager.RegisterHotkey(new[] { NonInvasiveKeyboardHookLibrary.ModifierKeys.Control }, 0x72, () =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    ClearEvent();
+                });
+            });
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
