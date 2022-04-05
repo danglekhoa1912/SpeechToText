@@ -14,20 +14,21 @@
             <ColumnDefinition Width="173*"/>
             <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="304" Margin="0,0,47,65">
+        <Grid Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="304" Margin="0,0,33,65">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="27*"/>
+                <ColumnDefinition Width="48*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="StartButton" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="80" Click="StartButton_Click" RenderTransformOrigin="1,1" SnapsToDevicePixels="True" ClickMode="Press" BorderThickness="0" Foreground="#FFDA0E0E" Grid.ColumnSpan="2">
+            <Button x:Name="StartButton" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="40" Click="StartButton_Click" RenderTransformOrigin="1,1" SnapsToDevicePixels="True" ClickMode="Press" BorderThickness="0" Foreground="#FFDA0E0E" Grid.ColumnSpan="2">
                 <Button.OpacityMask>
-                    <ImageBrush ImageSource="/Picture/audio.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="/Picture/play.png" Stretch="Uniform"/>
                 </Button.OpacityMask>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Picture/audio.png" Stretch="Uniform" />
+                    <ImageBrush ImageSource="/Picture/play.png" Stretch="Uniform" />
                 </Button.Background>
             </Button>
-            <Button x:Name="StopButton" IsEnabled="False" HorizontalAlignment="Left" Height="40" Margin="105,0,0,0" VerticalAlignment="Center" Width="80" Click="StopButton_OnClickopButton_Click" RenderTransformOrigin="-0.621,1.411" BorderThickness="0" Foreground="{x:Null}" Grid.Column="1">
+            <Button x:Name="StopButton" HorizontalAlignment="Left" Height="40" Margin="105,0,0,0" VerticalAlignment="Center" Width="40" Click="StopButton_OnClickopButton_Click" RenderTransformOrigin="-0.621,1.411" BorderThickness="0" Foreground="{x:Null}" Grid.Column="1" Grid.ColumnSpan="2">
                 <Button.OpacityMask>
                     <ImageBrush ImageSource="Picture/pause.png" Stretch="Uniform"/>
                 </Button.OpacityMask>
@@ -38,7 +39,7 @@
                     <ImageBrush ImageSource="Picture/pause.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="ClearButton" IsEnabled="False" HorizontalAlignment="Left" Height="40" Margin="220,0,0,0" VerticalAlignment="Center" Width="80" Click="ClearButton_Click" RenderTransformOrigin="-4.098,1.95" ClickMode="Press" Grid.Column="1">
+            <Button x:Name="ClearButton" HorizontalAlignment="Left" Height="40" Margin="112,0,0,0" VerticalAlignment="Center" Width="40" Click="ClearButton_Click" RenderTransformOrigin="-4.098,1.95" ClickMode="Press" Grid.Column="2">
                 <Button.OpacityMask>
                     <ImageBrush Stretch="Uniform" ImageSource="Picture/eraser.png"/>
                 </Button.OpacityMask>
@@ -73,6 +74,9 @@
                 <TextBlock Margin="3,3" FontWeight="Medium" >Hướng dẫn</TextBlock>
             </StackPanel>
         </Button>
+        <Image x:Name="slash_1" Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="238,424,0,0" VerticalAlignment="Top" Width="45" Source="/Picture/slash.png" IsEnabled="False"/>
+        <Image x:Name="slash2" Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="350,424,0,0" VerticalAlignment="Top" Width="45" Source="/Picture/slash.png" IsEnabled="False" RenderTransformOrigin="0.712,0.478"/>
+        <Image x:Name="slash3" Grid.Column="2" HorizontalAlignment="Left" Height="45" Margin="465,424,0,0" VerticalAlignment="Top" Width="45" Source="/Picture/slash.png" IsEnabled="False"/>
     </Grid>
 
 </Window>

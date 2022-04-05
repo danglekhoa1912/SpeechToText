@@ -37,7 +37,9 @@ namespace ui
         {
             InitializeComponent();
             //BtnFile.IsEnabled = false;
-
+            StopButton.IsEnabled = false;
+            ClearButton.IsEnabled = false;
+            slash_1.Visibility = Visibility.Hidden;
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
             //TestProcessingContent();
@@ -52,8 +54,11 @@ namespace ui
         void StartEvent()
         {
             StartButton.IsEnabled = false;
+            slash_1.Visibility = Visibility.Visible;
             StopButton.IsEnabled = true;
+            slash2.Visibility = Visibility.Hidden;
             ClearButton.IsEnabled = false;
+            slash3.Visibility = Visibility.Visible;
             var notificationManager = new NotificationManager();
             notificationManager.Show(new NotificationContent
             {
@@ -83,8 +88,11 @@ namespace ui
                 StopMic();
             }
             StartButton.IsEnabled = true;
+            slash_1.Visibility= Visibility.Hidden;
             StopButton.IsEnabled = false;
+            slash2.Visibility = Visibility.Visible;
             ClearButton.IsEnabled = true;
+            slash3.Visibility=Visibility.Hidden;
             var notificationManager = new NotificationManager();
 
             notificationManager.Show(new NotificationContent
@@ -102,7 +110,7 @@ namespace ui
 
             this.Dispatcher.Invoke(() =>
             {
-                DisplayText.Text += BusinessLogic.ProcessingContent(result);
+                DisplayText.Text +="-"+ BusinessLogic.ProcessingContent(result)+"\n";
                 send.Run(BusinessLogic.ProcessingContent(result));
             });
 
@@ -116,9 +124,9 @@ namespace ui
 
         private void ClearEvent()
         {
-            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            /*WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
             wplayer.URL = Path.GetFullPath(@"../../../../Sound/delete.mp3");
-            wplayer.controls.play();
+            wplayer.controls.play();*/
             DisplayText.Text = "";
         }
 
@@ -211,18 +219,11 @@ namespace ui
 
             if (filePath != "")
             {
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-                wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
-                wplayer.controls.play();
                 var format = new WaveFormat(24000, 16, 1);
 
                 googleSTT =
                 new GoogleSTT(GoogleLanguage.Vietnamese,
                                             format.AsVoIPMediaFormat(), RecognitionCallback, false, filePath);
-            }
-            else
-            {
-
             }
         }
 
