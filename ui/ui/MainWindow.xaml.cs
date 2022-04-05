@@ -279,5 +279,11 @@ namespace ui
             microphone.Stop();
             googleSTT.Stop();
         }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            ui.Help help = new ui.Help();
+            help.ShowDialog();
+        }
     }
 }
