@@ -37,18 +37,11 @@ namespace ui
         {
             InitializeComponent();
             //BtnFile.IsEnabled = false;
-            help();
+
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
             //TestProcessingContent();
 
-        }
-
-        private void help()
-        {
-            wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = Path.GetFullPath(@"../../../../Sound/Help-All.mp3");
-            wplayer.controls.play();
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -71,14 +64,9 @@ namespace ui
             if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
             {
                 RunFromFile();
-                StopEvent();
             }
-
             else
             {
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-                wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
-                wplayer.controls.play();
                 RunFromMic();
             }
         }
@@ -90,10 +78,7 @@ namespace ui
 
         void StopEvent()
         {
-            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = Path.GetFullPath(@"../../../../Sound/Pause.mp3");
-            wplayer.controls.play();
-            if ((bool)FromMic.IsChecked)    
+            if ((bool)FromMic.IsChecked)
             {
                 StopMic();
             }
@@ -108,8 +93,6 @@ namespace ui
                 Title = "Thông Báo 🎉🎉",
                 Message = "Chương trình dã tạm dừng",
                 Type = NotificationType.Error,
-
-
             }, expirationTime: TimeSpan.FromSeconds(3));
         }
 
