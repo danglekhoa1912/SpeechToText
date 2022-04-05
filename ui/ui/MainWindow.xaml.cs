@@ -58,9 +58,6 @@ namespace ui
 
         void StartEvent()
         {
-            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
-            wplayer.controls.play();
             StartButton.IsEnabled = false;
             StopButton.IsEnabled = true;
             ClearButton.IsEnabled = false;
@@ -79,6 +76,9 @@ namespace ui
 
             else
             {
+                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
+                wplayer.controls.play();
                 RunFromMic();
             }
         }
@@ -148,6 +148,9 @@ namespace ui
             });
             if (!File.Exists(filePath))
             {
+                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                wplayer.URL = Path.GetFullPath(@"../../../../Sound/file-error.mp3");
+                wplayer.controls.play();
                 MessageBox.Show("File does not exist!");
                 return "";
             }
@@ -225,11 +228,18 @@ namespace ui
 
             if (filePath != "")
             {
+                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                wplayer.URL = Path.GetFullPath(@"../../../../Sound/start.mp3");
+                wplayer.controls.play();
                 var format = new WaveFormat(24000, 16, 1);
 
                 googleSTT =
                 new GoogleSTT(GoogleLanguage.Vietnamese,
                                             format.AsVoIPMediaFormat(), RecognitionCallback, false, filePath);
+            }
+            else
+            {
+
             }
         }
 

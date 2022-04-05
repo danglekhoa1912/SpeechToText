@@ -23,8 +23,7 @@ namespace ui
         public Help()
         {
             InitializeComponent();
-            lblHelp.Content = "Bắt đấu : Ctrl + F1\nDừng nhập : Ctrl + F2\nXóa dữ liệu : Ctrl+F3";
-            lblCommand.Content = "Để nhập dấu bất kì vui lòng nói nhập dấu + tên dấu câu\nĐể xuống dòng vui lòng nói 'Nhập dấu xuống dòng'\n ";
+            lblHelp.Content = "Bắt đầu : Ctrl + F1\nDừng nhập : Ctrl + F2\nXóa dữ liệu : Ctrl+F3";
         }
     }
 }

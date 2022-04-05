@@ -5,18 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ui"
              mc:Ignorable="d" 
-             ResizeMode="NoResize"               
+             ResizeMode="CanMinimize"
+             WindowStartupLocation="CenterScreen"             
              Background="WhiteSmoke"
-             Title="Hướng dẫn" Height="242" Width="500">
-    <Grid HorizontalAlignment="Center" Height="236" VerticalAlignment="Top" Width="500" Background="#FFDFDFF1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="347*"/>
-            <ColumnDefinition Width="133*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Hướng dẫn cơ bản" HorizontalAlignment="Left" VerticalAlignment="Top" Height="33" Width="138" RenderTransformOrigin="1,0" Background="{x:Null}" Margin="10,9,0,0"/>
-        <Label Content="" Name="lblHelp" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="63" Width="480" Background="#FFE2BBBB" Grid.ColumnSpan="2" AllowDrop="True"/>
-        <Label Content="Bảng câu lệnh" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="33" Width="138"/>
-        <Label Name="lblCommand" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Height="54" Width="480" Background="#FFE2BBBB" Grid.ColumnSpan="2"/>
-
+             Title="Hướng dẫn" Height="300" Width="300" Icon="/help.png">
+    <Grid Height="296" VerticalAlignment="Center" Background="#FFDFDFF1" HorizontalAlignment="Center" Width="300">
+        <Label Content="CÁC PHÍM TẮT" RenderTransformOrigin="1,0" Background="{x:Null}" FontWeight="Medium" Margin="10,16,38,218"/>
+        <StackPanel HorizontalAlignment="Center" Height="240" Margin="0,50,0,0" VerticalAlignment="Top" Width="299" Background="#FFD6F7C7">
+            <Label Content="" x:Name="lblHelp" Height="236" Width="288" Background="#FFD6CBCB" FontWeight="SemiBold" FontSize="27"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -7,14 +7,14 @@
         xmlns:local="clr-namespace:ui"
         mc:Ignorable="d"
         Background="WhiteSmoke"
-        Title="Speech To Text" Height="518.313" Width="800" Loaded="Window_Loaded" Closing="Window_Closing"  Icon="/Picture/text-to-speech.png" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF77C3BE" Margin="0,0,-0.4,-72" Height="492" VerticalAlignment="Top">
+        Title="Speech To Text" Height="541" Width="800" Loaded="Window_Loaded" Closing="Window_Closing"  Icon="/Picture/text-to-speech.png" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF77C3BE" Height="531" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="36*"/>
             <ColumnDefinition Width="173*"/>
             <ColumnDefinition Width="585*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="304" Margin="0,0,47,30">
+        <Grid Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="304" Margin="0,0,47,65">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="75*"/>
@@ -49,8 +49,8 @@
             </Button>
         </Grid>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Top" Margin="10,426,0,0">
-            <RadioButton x:Name="FromMic" Content="Type from micro" IsChecked="{Binding FromMic, ElementName=mainWindow}" Height="24" Width="111" Checked="FromMic_Checked_1" FontWeight="Medium" />
-            <RadioButton x:Name="FromFile" Content="Type from file" IsChecked="{Binding FromFile, ElementName=mainWindow}" Height="24" Width="104" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" FontWeight="Medium" />
+            <RadioButton x:Name="FromMic" Content="Nhập từ giọng nói" IsChecked="{Binding FromMic, ElementName=mainWindow}" Height="24" Width="138" Checked="FromMic_Checked_1" FontWeight="Medium" />
+            <RadioButton x:Name="FromFile" Content="Nhập từ File" IsChecked="{Binding FromFile, ElementName=mainWindow}" Height="24" Width="104" Checked="FromFile_Checked" RenderTransformOrigin="-0.243,1.411" FontWeight="Medium" />
             <TextBox x:Name="fileNameTextBox" Height="24" TextWrapping="Wrap" Text="Wav File" Width="113" RenderTransformOrigin="0.018,0.53" TextAlignment="Center" IsEnabled="False" Focusable="False" AllowDrop="False"/>
             <Button x:Name="BtnFile" Content="" Width="28" Click="Button_Click" FontFamily="Segoe UI Emoji" RenderTransformOrigin="2.348,0.385" Height="36" Foreground="{x:Null}" Focusable="False" Cursor="Hand" ClickMode="Press">
                 <Button.OpacityMask>
@@ -64,10 +64,15 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="0.8,30,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2" Grid.Column="1">
-            <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="0.8,50,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2" Grid.Column="1">
+            <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman" Height="342"/>
         </ScrollViewer>
-        <Button Content="User manual" Name="Help" HorizontalAlignment="Left" Height="20" Margin="1,5,0,0" VerticalAlignment="Top" Width="87" Grid.Column="1" Click="Help_Click" RenderTransformOrigin="-6.992,1.152" Foreground="#FFE20808" BorderBrush="{x:Null}" Background="{x:Null}"/>
+        <Button Padding="0" Name="Help" HorizontalAlignment="Left" Height="24" Margin="36,13,0,0" VerticalAlignment="Top" Width="133" Click="Help_Click" RenderTransformOrigin="-6.992,1.152" Foreground="Black" BorderBrush="{x:Null}" Background="#FFEDEDED" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Picture/help.png" Height="20" Width="20"/>
+                <TextBlock Margin="3,3" FontWeight="Medium" >Hướng dẫn</TextBlock>
+            </StackPanel>
+        </Button>
     </Grid>
 
 </Window>
