@@ -31,6 +31,9 @@ namespace ui
 
         static GoogleSTT googleSTT;
 
+        //static bool start1, start2, start3;
+        //static bool stop1, stop2, stop3;
+        //static bool delete1, delete2, delete3;
 
         public MainWindow()
         {
@@ -66,7 +69,9 @@ namespace ui
             }, expirationTime: TimeSpan.FromSeconds(3));
             if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
             {
+                Console.WriteLine("check");
                 RunFromFile();
+                StopEvent();
             }
             else
             {
@@ -109,7 +114,15 @@ namespace ui
             this.Dispatcher.Invoke(() =>
             {
                 DisplayText.Text += "-" + BusinessLogic.ProcessingContent(result) + "\n";
-                send.Run(BusinessLogic.ProcessingContent(result));
+
+                if ((bool)FromMic.IsChecked)
+                {
+                    send.Send(BusinessLogic.ProcessingContent(result));
+                }
+
+
+                //send.Send(BusinessLogic.ProcessingContent(result));
+
             });
 
         }
@@ -122,9 +135,6 @@ namespace ui
 
         private void ClearEvent()
         {
-            /*WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-            wplayer.URL = Path.GetFullPath(@"../../../../Sound/delete.mp3");
-            wplayer.controls.play();*/
             DisplayText.Text = "";
         }
 
@@ -137,9 +147,6 @@ namespace ui
             });
             if (!File.Exists(filePath))
             {
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-                wplayer.URL = Path.GetFullPath(@"../../../../Sound/file-error.mp3");
-                wplayer.controls.play();
                 MessageBox.Show("File does not exist!");
                 return "";
             }
@@ -244,7 +251,7 @@ namespace ui
 
             googleSTT.Start();
 
-       
+
         }
         void StopMic()
         {
@@ -256,6 +263,12 @@ namespace ui
         {
             ui.Help help = new ui.Help();
             help.ShowDialog();
+        }
+
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            ui.Setting setting = new ui.Setting();
+            setting.ShowDialog();
         }
     }
 }

@@ -12,12 +12,12 @@ namespace ui
     {
         public void Run(String s)
         {
-            Thread t = new Thread(() => Send(s));
-            t.Start();
-            if (t.Join(4 * 1000) == false)
-            {
-                t.Abort();
-            }
+            //Thread t = new Thread(() => Send(s));
+            //t.Start();
+            //if (t.Join(4 * 1000) == false)
+            //{
+            //    t.Abort();
+            //}
         }
         public void Send(String s)
         {
