@@ -65,10 +65,12 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        <ScrollViewer HorizontalAlignment="Left" Height="347" Margin="0.8,50,0,0" VerticalAlignment="Top" Width="716" Background="#FFD6F7C7" Grid.ColumnSpan="2" Grid.Column="1">
-            <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman" Height="342"/>
+        <ScrollViewer 
+            HorizontalAlignment="Left"  Margin="0.8,50,0,0" VerticalAlignment="Top"  Background="#FFD6F7C7" Grid.ColumnSpan="2" MaxHeight="342" MinHeight="342" Grid.Column="1">
+            <TextBlock TextWrapping="Wrap" x:Name="DisplayText" FontSize="24" FontFamily="Times New Roman"  Width="716"/>
         </ScrollViewer>
-        <Button Padding="0" Name="Help" HorizontalAlignment="Left" Height="24" Margin="36,13,0,0" VerticalAlignment="Top" Width="133" Click="Help_Click" RenderTransformOrigin="-6.992,1.152" Foreground="Black" BorderBrush="{x:Null}" Background="#FFEDEDED" Grid.ColumnSpan="2">
+
+<Button Padding="0" Name="Help" HorizontalAlignment="Left" Height="24" Margin="36,13,0,0" VerticalAlignment="Top" Width="133" Click="Help_Click" RenderTransformOrigin="-6.992,1.152" Foreground="Black" BorderBrush="{x:Null}" Background="#FFEDEDED" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <Image Source="Picture/help.png" Height="20" Width="20"/>
                 <TextBlock Margin="3,3" FontWeight="Medium" >Hướng dẫn</TextBlock>

@@ -31,7 +31,6 @@ namespace ui
 
         static GoogleSTT googleSTT;
 
-        WMPLib.WindowsMediaPlayer wplayer;
 
         public MainWindow()
         {
@@ -42,7 +41,6 @@ namespace ui
             slash_1.Visibility = Visibility.Hidden;
             FromMic.IsChecked = true;
             fileNameTextBox.IsReadOnly = true;
-            //TestProcessingContent();
 
         }
 
@@ -213,7 +211,7 @@ namespace ui
             keyboardHookManager.Stop();
         }
 
-        async void RunFromFile()
+        void RunFromFile()
         {
             String filePath = GetFile();
 
@@ -246,27 +244,7 @@ namespace ui
 
             googleSTT.Start();
 
-
-            //Console.ReadLine();
-
-            //Console.WriteLine("Disconnect");
-
-            //connector.Disconnect(microphone, googleSTT);
-
-            //Console.WriteLine("Google dispose");
-
-            //googleSTT.Dispose();
-            //googleSTT = null;
-
-            //Console.WriteLine("microphone dispose");
-
-            //microphone.Dispose();
-            //microphone = null;
-
-            //Console.WriteLine("connector dispose");
-
-            //connector.Dispose();
-            //connector = null;
+       
         }
         void StopMic()
         {

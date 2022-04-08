@@ -7,61 +7,61 @@ namespace BaseService
     {
         public static string ProcessingContent(this string contents)
         {
-                if ((contents.Contains("Nhập dấu")
-                    || contents.Contains("nhập dấu"))
-                    && !contents.Contains("Nhập dấu.")
-                    && !contents.Contains("nhập dấu."))
+                if ((contents.Contains("Nhập")
+                    || contents.Contains("nhập"))
+                    && !contents.Contains("Nhập.")
+                    && !contents.Contains("nhập."))
                 {
-                    contents = contents.Replace("Nhập dấu chấm phẩy.", "; ");
-                    contents = contents.Replace(" nhập dấu chấm phẩy.", "; ");
-                    contents = contents.Replace("Nhập dấu chấm phẩy", "; ");
-                    contents = contents.Replace("nhập dấu chấm phẩy", "; ");
+                    contents = contents.Replace("Nhập chấm phẩy.", "; ");
+                    contents = contents.Replace(" nhập chấm phẩy.", "; ");
+                    contents = contents.Replace("Nhập chấm phẩy", "; ");
+                    contents = contents.Replace("nhập chấm phẩy", "; ");
 
                     //dấu chấm hỏi
-                    contents = contents.Replace("Nhập dấu chấm hỏi.", "? ");
-                    contents = contents.Replace(" nhập dấu chấm hỏi.", "? ");
-                    contents = contents.Replace("Nhập dấu chấm hỏi", "? ");
-                    contents = contents.Replace("nhập dấu chấm hỏi", "? ");
+                    contents = contents.Replace("Nhập chấm hỏi.", "? ");
+                    contents = contents.Replace(" nhập chấm hỏi.", "? ");
+                    contents = contents.Replace("Nhập chấm hỏi", "? ");
+                    contents = contents.Replace("nhập chấm hỏi", "? ");
 
                     //dấu chấm than
-                    contents = contents.Replace("Nhập dấu chấm than.", "! ");
-                    contents = contents.Replace(" nhập dấu chấm than.", "! ");
-                    contents = contents.Replace("Nhập dấu chấm than", "! ");
-                    contents = contents.Replace("nhập dấu chấm than", "! ");
+                    contents = contents.Replace("Nhập chấm than.", "! ");
+                    contents = contents.Replace(" nhập chấm than.", "! ");
+                    contents = contents.Replace("Nhập chấm than", "! ");
+                    contents = contents.Replace("nhập chấm than", "! ");
 
                     //dấu chấm
-                    contents = contents.Replace("Nhập dấu chấm.", ". ");
-                    contents = contents.Replace(" nhập dấu chấm.", ". ");
-                    contents = contents.Replace("Nhập dấu chấm", ". ");
-                    contents = contents.Replace("nhập dấu chấm", ". ");
+                    contents = contents.Replace("Nhập chấm.", ". ");
+                    contents = contents.Replace(" nhập chấm.", ". ");
+                    contents = contents.Replace("Nhập chấm", ". ");
+                    contents = contents.Replace("nhập chấm", ". ");
 
                     //dấu phẩy
-                    contents = contents.Replace("Nhập dấu phẩy.", ", ");
-                    contents = contents.Replace(" nhập dấu phẩy.", ", ");
-                    contents = contents.Replace("Nhập dấu phẩy", ", ");
-                    contents = contents.Replace("nhập dấu phẩy", ", ");
+                    contents = contents.Replace("Nhập phẩy.", ", ");
+                    contents = contents.Replace(" nhập phẩy.", ", ");
+                    contents = contents.Replace("Nhập phẩy", ", ");
+                    contents = contents.Replace("nhập phẩy", ", ");
 
                     //dấu xuống dòng
-                    contents = contents.Replace("Nhập dấu xuống dòng.", "\n");
-                    contents = contents.Replace(" nhập dấu xuống dòng.", "\n");
-                    contents = contents.Replace("Nhập dấu xuống dòng ", "\n");
-                    contents = contents.Replace("nhập dấu xuống dòng", "\n");
+                    contents = contents.Replace("Nhập xuống dòng.", "\r\n");
+                    contents = contents.Replace(" nhập xuống dòng.", "\r\n");
+                    contents = contents.Replace("Nhập Xuống dòng ", "\r\n");
+                    contents = contents.Replace("nhập xuống dòng", "\r\n");
 
                     //dấu hai chấm
-                    contents = contents.Replace("Nhập dấu hai chấm.", ": ");
-                    contents = contents.Replace(" nhập dấu hai chấm.", ": ");
-                    contents = contents.Replace("Nhập dấu hai chấm", ": ");
-                    contents = contents.Replace("nhập dấu hai chấm", ": ");
+                    contents = contents.Replace("Nhập hai chấm.", ": ");
+                    contents = contents.Replace(" nhập hai chấm.", ": ");
+                    contents = contents.Replace("Nhập hai chấm", ": ");
+                    contents = contents.Replace("nhập hai chấm", ": ");
 
                     //dấu gạch ngang 
-                    contents = contents.Replace("Nhập dấu gạch ngang.", "- ");
-                    contents = contents.Replace(" nhập dấu gạch ngang.", "- ");
-                    contents = contents.Replace("Nhập dấu gạch ngang", "- ");
-                    contents = contents.Replace("nhập dấu gạch ngang", "- ");
+                    contents = contents.Replace("Nhập gạch ngang.", "- ");
+                    contents = contents.Replace(" nhập gạch ngang.", "- ");
+                    contents = contents.Replace("Nhập gạch ngang", "- ");
+                    contents = contents.Replace("nhập gạch ngang", "- ");
 
                     //dấu 3 chấm
-                    contents = contents.Replace("nhập dấu 3 chấm", "... ");
-                    contents = contents.Replace("nhập dấu ba chấm", "... ");
+                    contents = contents.Replace("nhập 3 chấm", "... ");
+                    contents = contents.Replace("nhậpXuống dòng Alo ba chấm", "... ");
 
                     // Đóng mửo ngoặc 
                     contents = contents.Replace("nhập dấu ngoặc đơn", "' ");

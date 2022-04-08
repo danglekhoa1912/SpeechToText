@@ -95,14 +95,22 @@ namespace BaseService
                     LanguageCode = LanguageCodes.Vietnamese.Vietnam,
                 };
                 var audio = RecognitionAudio.FromFile(filePath);
-                var response = speech.Recognize(config, audio);
-                foreach (var result in response.Results)
+                try
                 {
-                    foreach (var alternative in result.Alternatives)
+                    var response = speech.Recognize(config, audio);
+                    foreach (var result in response.Results)
                     {
-                        callback( alternative.Transcript);
+                        foreach (var alternative in result.Alternatives)
+                        {
+                            callback(alternative.Transcript);
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+               
             }
 
         }
