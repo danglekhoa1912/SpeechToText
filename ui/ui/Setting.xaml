@@ -16,9 +16,9 @@
         <GroupBox Header="Khởi động" Height="100"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,23,0,0" Grid.ColumnSpan="2" AutomationProperties.Name="Start">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Width="200" VerticalAlignment="Center" >
-                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" AutomationProperties.Name="Start1" />
-                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" AutomationProperties.Name="Start2" />
-                    <CheckBox Content="Alt" VerticalAlignment="Center" RenderTransformOrigin="2.101,0.526" Margin="10,0,0,0" AutomationProperties.Name="Start3"  />
+                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" Name="Start1" />
+                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" Name="Start2" />
+                    <CheckBox Content="Alt" VerticalAlignment="Center" RenderTransformOrigin="2.101,0.526" Margin="10,0,0,0" Name="Start3"  />
                 </StackPanel>
                 <Label Content="F1" Margin="20,0,0,0" VerticalAlignment="Center"  />
             </StackPanel>
@@ -26,9 +26,9 @@
         <GroupBox Header="Dừng Nhập" Height="100" VerticalAlignment="Top" Margin="223.4,23,18,0" Width="254.4" Grid.Column="1">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Width="200" VerticalAlignment="Center" >
-                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" AutomationProperties.Name="Stop1" />
-                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" AutomationProperties.Name="Stop2" />
-                    <CheckBox Content="Alt" VerticalAlignment="Center" Margin="10,0,0,0" AutomationProperties.Name="Stop3"  />
+                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" Name="Stop1" />
+                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" Name="Stop2" />
+                    <CheckBox Content="Alt" VerticalAlignment="Center" Margin="10,0,0,0" Name="Stop3"  />
                 </StackPanel>
                 <Label Content="F2" Margin="20,0,0,0" VerticalAlignment="Center"  />
             </StackPanel>
@@ -36,14 +36,14 @@
         <GroupBox Header="Xóa Văn Bản" Height="100"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,137,0,0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Width="200" VerticalAlignment="Center" >
-                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" AutomationProperties.Name="Delete1" />
-                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" AutomationProperties.Name="Delete2" />
-                    <CheckBox Content="Alt" VerticalAlignment="Center" Margin="10,0,0,0" AutomationProperties.Name="Delete3"  />
+                    <CheckBox Content="Shift" IsChecked="True" VerticalAlignment="Center" Name="Delete1" />
+                    <CheckBox Content="Ctrl" VerticalAlignment="Center" Margin="10,0,0,0" Name="Delete2" />
+                    <CheckBox Content="Alt" VerticalAlignment="Center" Margin="10,0,0,0" Name="Delete3"  />
                 </StackPanel>
                 <Label Content="F3" Margin="20,0,0,0" VerticalAlignment="Center"  />
             </StackPanel>
         </GroupBox>
-        <CheckBox Content="Khởi động cùng Windows" VerticalAlignment="Top" Margin="247.4,184,33,0" Grid.Column="1" AutomationProperties.Name="StartWithWindowns" />
+        <CheckBox Content="Khởi động cùng Windows" VerticalAlignment="Top" Margin="247.4,184,33,0" Grid.Column="1" Name="StartWithWindowns" />
         <StackPanel Height="30" Orientation="Horizontal" Margin="105,0,184.2,39" VerticalAlignment="Bottom" Grid.Column="1">
             <Button Content="Lưu" Width="80" Click="Button_Click" ></Button>
             <Button Content="Thoát" Width="80" Margin="40,0,0,0" Click="Button_Click_1"  ></Button>
