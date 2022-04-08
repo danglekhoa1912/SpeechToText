@@ -23,7 +23,13 @@ namespace ui
         bool start1, start2, start3;
         bool stop1, stop2, stop3;
         bool delete1, delete2, delete3;
-        private MainWindow main = new MainWindow();
+
+        private MainWindow _mainWindowModel;
+        public MainWindow MainWindowModel
+        {
+            get { return _mainWindowModel; }
+            set { _mainWindowModel = value; }
+        }
         public Setting()
         {
             InitializeComponent();
@@ -47,7 +53,7 @@ namespace ui
             MainWindow.Start1 = start1;
             MainWindow.Start2 = start2;
             MainWindow.Start3 = start3;
-            
+
             MainWindow.Stop1 = stop1;
             MainWindow.Stop2 = stop2;
             MainWindow.Stop3 = stop3;
@@ -55,7 +61,9 @@ namespace ui
             MainWindow.Delete1 = delete1;
             MainWindow.Delete2 = delete2;
             MainWindow.Delete3 = delete3;
-            //main.setKeyHook();
+
+            _mainWindowModel.setKeyHook();
+
             this.Close();
 
         }

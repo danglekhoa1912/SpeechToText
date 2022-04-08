@@ -122,7 +122,7 @@ namespace ui
                 Title = "Thông Báo 🎉🎉",
                 Message = "Chương trình bắt đầu thực thi",
                 Type = NotificationType.Success
-            }, expirationTime: TimeSpan.FromSeconds(3));
+            });
             if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
             {
                 Console.WriteLine("check");
@@ -156,11 +156,10 @@ namespace ui
 
             notificationManager.Show(new NotificationContent
             {
-
                 Title = "Thông Báo 🎉🎉",
                 Message = "Chương trình dã tạm dừng",
                 Type = NotificationType.Error,
-            }, expirationTime: TimeSpan.FromSeconds(3));
+            });
         }
 
         private void RecognitionCallback(string result)
@@ -304,6 +303,7 @@ namespace ui
             keyboardHookManager.Stop();
             keyboardHookManager.Start();
             keyboardHookManager.UnregisterAll();
+
             Console.WriteLine(this.Dispatcher.Thread.ThreadState.ToString());
 
             keyboardHookManager.RegisterHotkey(startArr.ToArray(), 0x70, () =>
@@ -390,7 +390,7 @@ namespace ui
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             ui.Setting setting = new ui.Setting();
-
+            setting.MainWindowModel = this;
             setting.Show();
         }
     }

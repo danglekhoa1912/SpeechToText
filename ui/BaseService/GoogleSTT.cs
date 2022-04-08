@@ -81,7 +81,6 @@ namespace BaseService
                                 result.Alternatives.OrderBy(x => x.Confidence).First();
                                 callback(top.Transcript);
                             }
-
                         }
                     }
                 });
