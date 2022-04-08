@@ -36,7 +36,7 @@ namespace ui
         static bool start1, start2, start3;
         static bool stop1, stop2, stop3;
         static bool delete1, delete2, delete3;
-
+        private bool isProcessing = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -105,34 +105,40 @@ namespace ui
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            StartEvent();
+           StartEvent();
         }
 
         void StartEvent()
         {
-            StartButton.IsEnabled = false;
-            slash_1.Visibility = Visibility.Visible;
-            StopButton.IsEnabled = true;
-            slash2.Visibility = Visibility.Hidden;
-            ClearButton.IsEnabled = false;
-            slash3.Visibility = Visibility.Visible;
-            var notificationManager = new NotificationManager();
-            notificationManager.Show(new NotificationContent
+            if(!isProcessing)
             {
-                Title = "Thông Báo 🎉🎉",
-                Message = "Chương trình bắt đầu thực thi",
-                Type = NotificationType.Success
-            });
-            if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
-            {
-                Console.WriteLine("check");
-                RunFromFile();
-                StopEvent();
+                isProcessing = true;
+                StartButton.IsEnabled = false;
+                slash_1.Visibility = Visibility.Visible;
+                StopButton.IsEnabled = true;
+                slash2.Visibility = Visibility.Hidden;
+                ClearButton.IsEnabled = false;
+                slash3.Visibility = Visibility.Visible;
+                var notificationManager = new NotificationManager();
+
+                notificationManager.Show(new NotificationContent
+                {
+                    Title = "Thông Báo 🎉🎉",
+                    Message = "Chương trình bắt đầu thực thi",
+                    Type = NotificationType.Success
+                });
+                if (FromFile.IsChecked != null && (bool)FromFile.IsChecked)
+                {
+                    Console.WriteLine("check");
+                    RunFromFile();
+                    StopEvent();
+                }
+                else
+                {
+                    RunFromMic();
+                }
             }
-            else
-            {
-                RunFromMic();
-            }
+           
         }
 
         private void StopButton_OnClickopButton_Click(object sender, RoutedEventArgs e)
@@ -165,7 +171,6 @@ namespace ui
         private void RecognitionCallback(string result)
         {
             SendMess send = new SendMess();
-
             this.Dispatcher.Invoke(() =>
             {
                 DisplayText.Text += "-" + BusinessLogic.ProcessingContent(result) + "\n";
@@ -177,6 +182,7 @@ namespace ui
 
 
                 send.Send(BusinessLogic.ProcessingContent(result));
+                isProcessing = false;
 
             });
 
