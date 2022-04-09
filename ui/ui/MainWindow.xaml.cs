@@ -148,6 +148,7 @@ namespace ui
 
         void StopEvent()
         {
+            isProcessing = false;
             if ((bool)FromMic.IsChecked)
             {
                 StopMic();

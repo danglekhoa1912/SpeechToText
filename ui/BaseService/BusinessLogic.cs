@@ -64,23 +64,23 @@ namespace BaseService
                     contents = contents.Replace("nhậpXuống dòng Alo ba chấm", "... ");
 
                     // Đóng mửo ngoặc 
-                    contents = contents.Replace("nhập dấu ngoặc đơn", "' ");
-                    contents = contents.Replace("nhập dấu ngoặc đơn", "' ");
-                    contents = contents.Replace("nhập dấu ngoặc kép", "\" ");
-                    contents = contents.Replace("nhập dấu ngoặc kép", "\" ");
-                    contents = contents.Replace("nhập dấu mở ngoặc", "( ");
-                    contents = contents.Replace("nhập dấu đóng ngoặc", ") ");
+                    contents = contents.Replace("nhập ngoặc đơn", "' ");
+                    contents = contents.Replace("nhập ngoặc đơn", "' ");
+                    contents = contents.Replace("nhập ngoặc kép", "\" ");
+                    contents = contents.Replace("nhập ngoặc kép", "\" ");
+                    contents = contents.Replace("nhập mở ngoặc", "( ");
+                    contents = contents.Replace("nhập đóng ngoặc", ") ");
                     //Nhập ký tự đặc biệt 
-                    contents = contents.Replace("Nhập dấu thăng", "#");
-                    contents = contents.Replace("Nhập dấu phần trăm", "%");
-                    contents = contents.Replace("Nhập dấu và", "&");
-                    contents = contents.Replace("Nhập dấu sao", "*");
-                    contents = contents.Replace("Nhập dấu gạch dưới", "_");
-                    contents = contents.Replace("Nhập dấu bằng", "=");
-                    contents = contents.Replace("Nhập dấu cộng", "+");
-                    contents = contents.Replace("Nhập dấu phần trăm", "%");
-                    contents = contents.Replace("Nhập dấu ngoặc nhọn mở", "{");
-                    contents = contents.Replace("Nhập dấu ngoặc nhọn đóng", "}");
+                    contents = contents.Replace("Nhập thăng", "#");
+                    contents = contents.Replace("Nhập phần trăm", "%");
+                    contents = contents.Replace("Nhập và", "&");
+                    contents = contents.Replace("Nhập sao", "*");
+                    contents = contents.Replace("Nhập gạch dưới", "_");
+                    contents = contents.Replace("Nhập bằng", "=");
+                    contents = contents.Replace("Nhập cộng", "+");
+                    contents = contents.Replace("Nhập phần trăm", "%");
+                    contents = contents.Replace("Nhập ngoặc nhọn mở", "{");
+                    contents = contents.Replace("Nhập ngoặc nhọn đóng", "}");
                 }
 
                 // xoa tu 
